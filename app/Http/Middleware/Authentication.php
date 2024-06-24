@@ -15,6 +15,12 @@ class Authentication
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!Auth()->check()) {
+            // User is not authenticated, redirect to the login page
+            return redirect()->route('admin.login')->with('error', 'Please log in to access this page.');
+        }
+
+        // User is authenticated, allow the request to proceed
         return $next($request);
     }
 }

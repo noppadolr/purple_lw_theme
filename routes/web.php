@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\AdminDashboard;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +19,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('admin/dashboard',AdminDashboard::class)->name('admin.dashboard');
+
+Route::view('admin/login', 'backend.login')->name('admin.login');
+
+
+
